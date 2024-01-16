@@ -1,3 +1,3 @@
-const Header = () => <header>Teste</header>;
+const Header = () => <header>header</header>;
 
 export default Header;
