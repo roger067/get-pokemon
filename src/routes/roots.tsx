@@ -5,7 +5,9 @@ export const rootRoute = new RootRoute({
   component: () => (
     <>
       <Header />
-      <Outlet />
+      <div className="container mx-auto px-4">
+        <Outlet />
+      </div>
     </>
   ),
 });
