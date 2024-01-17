@@ -3,6 +3,8 @@ import usePokemonStore from '../store/usePokemonStore';
 
 const PokemonList = () => {
   const pokemons = usePokemonStore((state) => state.pokemons);
+  const caugthPokemon = usePokemonStore((state) => state.caugthPokemon);
+  const deletePokemon = usePokemonStore((state) => state.deletePokemon);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -14,8 +16,8 @@ const PokemonList = () => {
           types={pokemon.types}
           caughted={pokemon.caughted}
           generation={pokemon.generation}
-          onCatchPokemon={() => {}}
-          onDeletePokemon={() => {}}
+          onCaughtPokemon={() => caugthPokemon(pokemon.id)}
+          onDeletePokemon={() => deletePokemon(pokemon.id)}
         />
       ))}
     </div>

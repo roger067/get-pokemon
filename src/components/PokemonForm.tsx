@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
+
+import { toast } from 'react-toastify';
+
 import {
   usePokemonsQuery,
   usePokemonByNameQuery,
 } from '../services/queries/pokemon.query';
-import { useEffect, useState } from 'react';
 import { AutoComplete, ToggleButton } from './shared';
 import usePokemonStore from '../store/usePokemonStore';
 
@@ -21,10 +24,14 @@ const PokemonForm = () => {
     refetch,
   } = usePokemonByNameQuery(pokemonName, false);
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    refetch();
+    try {
+      await refetch({ throwOnError: true });
+    } catch {
+      toast.error('Erro ao adicionar Pokemon!');
+    }
   };
 
   useEffect(() => {
@@ -75,9 +82,10 @@ const PokemonForm = () => {
       </div>
       <button
         type="submit"
+        disabled={isPokemonLoading || !pokemonName}
         className="bg-red-500 rounde-xl text-white h-[42px] px-4 rounded-xl hover:bg-red-600 focus:bg-red-600 transition-colors"
       >
-        Adicionar
+        {isPokemonLoading ? 'Carregando...' : 'Adicionar'}
       </button>
     </form>
   );

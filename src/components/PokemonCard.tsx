@@ -7,7 +7,7 @@ interface PokemonCardProps {
   types: PokemonType[];
   generation: string;
   caughted: boolean;
-  onCatchPokemon: () => void;
+  onCaughtPokemon: () => void;
   onDeletePokemon: () => void;
 }
 
@@ -17,7 +17,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   types,
   generation = 'IV',
   caughted,
-  onCatchPokemon,
+  onCaughtPokemon,
   onDeletePokemon,
 }) => {
   const color = mappedColorTypes[types[0].type.name];
@@ -31,9 +31,9 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
         <span className="text-2xl text-white font-bold capitalize">{name}</span>
         <div className="flex mt-3 justify-between items-center">
           <div className="flex gap-2 ">
-            {types.map((typeObject) => (
+            {types.map((typeObject, index) => (
               <span
-                key={typeObject.slot}
+                key={`${typeObject.type.name}-${index}`}
                 className={`px-2 py-1 rounded-full ${color.bgLight} text-white font-semibold w-fit capitalize`}
               >
                 {typeObject.type.name}
@@ -52,7 +52,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
           <button
             className={`${color.bgMedium} rounde-xl text-white h-[42px] px-4 rounded-xl w-full ${color.bgDarkHover} transition-colors`}
             disabled={caughted}
-            onClick={() => onCatchPokemon()}
+            onClick={() => onCaughtPokemon()}
           >
             {caughted ? 'Capturado' : 'Capturar'}
           </button>
