@@ -61,6 +61,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
     >
       <input
         type="text"
+        id={name}
         name={name}
         value={value}
         placeholder={placeholder}
