@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Router from './routes';
 
 import './index.css';
-import '@radix-ui/themes/styles.css';
 
 const queryClient = new QueryClient();
 

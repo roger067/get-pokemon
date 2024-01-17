@@ -1,0 +1,95 @@
+import { useEffect, useRef, useState } from 'react';
+
+interface AutoCompleteProps {
+  name: string;
+  value: string;
+  suggestions: string[];
+  completeMethod: (value: string) => void;
+  onChange: (value: string) => void;
+  disabled?: boolean;
+  className?: string;
+  placeholder?: string;
+}
+
+const AutoComplete: React.FC<AutoCompleteProps> = ({
+  name,
+  value,
+  suggestions,
+  completeMethod,
+  onChange,
+  placeholder,
+  disabled = false,
+  className = '',
+}) => {
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const onClick = (event: string) => {
+    onChange(event);
+    setShowSuggestions(false);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    onChange(query);
+    completeMethod(query);
+    setShowSuggestions(true);
+  };
+
+  return (
+    <div
+      className={`relative ${className}`}
+      ref={(node: HTMLInputElement) => (inputRef.current = node)}
+    >
+      <input
+        type="text"
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        onChange={handleChange}
+        disabled={disabled}
+        autoComplete="off"
+        className="w-full py-2 px-3 border border-slate-500 rounded-xl"
+      />
+      {showSuggestions && (
+        <ul className="absolute z-10 w-full py-2 mt-1 bg-white border rounded-xl shadow-md">
+          {!suggestions.length ? (
+            <li className="p-2 text-gray-500 text-center">
+              Termo não encontrado
+            </li>
+          ) : (
+            suggestions.map((suggestion, index) => (
+              <li
+                key={`${suggestion}-${index}`}
+                className="transition-colors p-2 cursor-pointer hover:bg-red-500 hover:text-white"
+                onClick={() => onClick(suggestion)}
+              >
+                {suggestion}
+              </li>
+            ))
+          )}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default AutoComplete;

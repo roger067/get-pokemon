@@ -1,17 +1,20 @@
-import { PokemonList } from '../components';
-import { useAllPokemonsQuery } from '../services/queries/pokemon.query';
+import { PokemonForm, PokemonList } from '../components';
+import { useAllPokemonsDetailedQuery } from '../services/queries/pokemon.query';
 
 const Home = () => {
-  const { data, isLoading, isError } = useAllPokemonsQuery();
+  const { data, isLoading, isError } = useAllPokemonsDetailedQuery();
 
   console.log(data);
 
   return (
-    <PokemonList
-      pokemons={data || []}
-      isLoading={isLoading}
-      isError={isError}
-    />
+    <>
+      <PokemonForm />
+      <PokemonList
+        pokemons={data || []}
+        isLoading={isLoading}
+        isError={isError}
+      />
+    </>
   );
 };
 
