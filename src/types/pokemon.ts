@@ -1,9 +1,12 @@
-export interface GetPokemonsResponse {
+export interface PokemonApiResponse {
   status: string;
   count: number;
-  results: Pokemon[];
   next?: string;
   previous?: string;
+}
+
+export interface GetPokemonResponse extends PokemonApiResponse {
+  results: PokemonResponse[];
 }
 
 export interface GetPokemonsParams {
@@ -16,21 +19,23 @@ export interface Pokemon {
   name: string;
   types: PokemonType[];
   stats: PokemonStats[];
+  sprites: {
+    front_default: string;
+  };
   abilities: PokemonAbility[];
   weight: number;
   height: number;
   species: Species;
 }
 
-interface Species {
+interface PokemonResponse {
   name: string;
   url: string;
 }
 
-interface Ability {
-  name: string;
-  url: string;
-}
+interface Species extends PokemonResponse {}
+
+interface Ability extends PokemonResponse {}
 
 interface Stat {
   name: StatName;

@@ -1,14 +1,14 @@
 import { PokemonList } from '../components';
-import { usePokemonsQuery } from '../services/queries/pokemon.query';
+import { useAllPokemonsQuery } from '../services/queries/pokemon.query';
 
 const Home = () => {
-  const { data, isLoading, isError } = usePokemonsQuery();
+  const { data, isLoading, isError } = useAllPokemonsQuery();
 
   console.log(data);
 
   return (
     <PokemonList
-      pokemons={data?.results || []}
+      pokemons={data || []}
       isLoading={isLoading}
       isError={isError}
     />
