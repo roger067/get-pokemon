@@ -26,7 +26,11 @@ export interface Pokemon {
   weight: number;
   height: number;
   species: Species;
-  catched?: boolean;
+}
+
+export interface AddedPokemon extends Pokemon {
+  catched: boolean;
+  generation: string;
 }
 
 interface PokemonResponse {

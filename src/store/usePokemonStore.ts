@@ -1,10 +1,10 @@
 import { create } from 'zustand';
-import { Pokemon } from '../types/pokemon';
+import { AddedPokemon } from '../types/pokemon';
 
 type PokemonStore = {
-  pokemons: Pokemon[];
-  addPokemon: (pokemon: Pokemon) => void;
-  catchPokemon: (id: number, updatedPokemon: Partial<Pokemon>) => void;
+  pokemons: AddedPokemon[];
+  addPokemon: (pokemon: AddedPokemon) => void;
+  catchPokemon: (id: number, updatedPokemon: Partial<AddedPokemon>) => void;
   deletePokemon: (id: number) => void;
 };
 
