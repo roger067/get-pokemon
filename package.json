@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@radix-ui/themes": "^2.0.3",
     "@tanstack/react-query": "^5.17.12",
     "@tanstack/react-router": "^1.4.6",
     "react": "^18.2.0",
