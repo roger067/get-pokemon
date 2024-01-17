@@ -1,17 +1,41 @@
-import { usePokemonsQuery } from '../services/queries/pokemon.query';
+import {
+  usePokemonsQuery,
+  usePokemonByNameQuery,
+} from '../services/queries/pokemon.query';
 import { useEffect, useState } from 'react';
 import { AutoComplete, ToggleButton } from './shared';
+import usePokemonStore from '../store/usePokemonStore';
 
 const PokemonForm = () => {
-  const { data, isLoading, isError } = usePokemonsQuery();
-  const [pokemonName, setPokemonName] = useState('');
+  const pokemonName = usePokemonStore((state) => state.pokemonName);
+  const setPokemonName = usePokemonStore((state) => state.setPokemonName);
+  const addPokemon = usePokemonStore((state) => state.addPokemon);
+
   const [caughtedPokemon, setCaughtedPokemon] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
+
+  const { data, isLoading, isError } = usePokemonsQuery();
+  const {
+    data: pokemon,
+    isFetching: isPokemonLoading,
+    refetch,
+  } = usePokemonByNameQuery(pokemonName, false);
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    refetch();
+  };
 
   useEffect(() => {
     const options = data?.results.map((pokemon) => pokemon.name) || [];
     setFilteredOptions(options);
   }, [data]);
+
+  useEffect(() => {
+    if (pokemon && !isPokemonLoading)
+      addPokemon({ ...pokemon, generation: 'IV', caughted: caughtedPokemon });
+  }, [pokemon, isPokemonLoading, caughtedPokemon, addPokemon]);
 
   const searchPokemons = (value: string) => {
     const filteredPokemons = data?.results.filter((pokemon) => {
@@ -24,7 +48,10 @@ const PokemonForm = () => {
   };
 
   return (
-    <form className="flex gap-4 mb-8 md:items-end md:flex-row flex-col">
+    <form
+      className="flex gap-4 mb-8 md:items-end md:flex-row flex-col"
+      onSubmit={onSubmit}
+    >
       <div className="flex flex-1 gap-4 items-end">
         <div className="flex flex-col gap-2 w-full max-w-screen-sm">
           <label htmlFor="name">Digite o nome do pokemon: </label>

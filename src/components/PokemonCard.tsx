@@ -6,7 +6,7 @@ interface PokemonCardProps {
   imageUrl: string;
   types: PokemonType[];
   generation: string;
-  catched: boolean;
+  caughted: boolean;
   onCatchPokemon: () => void;
   onDeletePokemon: () => void;
 }
@@ -16,7 +16,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   imageUrl,
   types,
   generation = 'IV',
-  catched,
+  caughted,
   onCatchPokemon,
   onDeletePokemon,
 }) => {
@@ -33,6 +33,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
           <div className="flex gap-2 ">
             {types.map((typeObject) => (
               <span
+                key={typeObject.slot}
                 className={`px-2 py-1 rounded-full ${color.bgLight} text-white font-semibold w-fit capitalize`}
               >
                 {typeObject.type.name}
@@ -50,10 +51,10 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
           </button>
           <button
             className={`${color.bgMedium} rounde-xl text-white h-[42px] px-4 rounded-xl w-full ${color.bgDarkHover} transition-colors`}
-            disabled={catched}
+            disabled={caughted}
             onClick={() => onCatchPokemon()}
           >
-            {catched ? 'Capturado' : 'Capturar'}
+            {caughted ? 'Capturado' : 'Capturar'}
           </button>
         </div>
       </div>
