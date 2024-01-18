@@ -22,6 +22,20 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
 }) => {
   const color = mappedColorTypes[types[0].type.name];
 
+  const handleDeletePokemon = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    onDeletePokemon();
+  };
+
+  const handleCaughtPokemon = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    onCaughtPokemon();
+  };
+
   return (
     <div className={`p-5 shadow-md rounded-xl ${color.bgNormal}`}>
       <div className="flex justify-center mb-6">
@@ -47,14 +61,14 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
         <div className="flex gap-3 mt-6">
           <button
             className={`bg-white ${color.textMedium} border ${color.borderMedium} rounde-xl h-[42px] px-4 rounded-xl w-full ${color.bgThinHover} transition-colors`}
-            onClick={() => onDeletePokemon()}
+            onClick={handleDeletePokemon}
           >
             Deletar
           </button>
           <button
             className={`${color.bgMedium} rounde-xl text-white h-[42px] px-4 rounded-xl w-full ${color.bgDarkHover} transition-colors disabled:bg-gray-200 disabled:text-gray-400`}
             disabled={caught}
-            onClick={() => onCaughtPokemon()}
+            onClick={handleCaughtPokemon}
           >
             {caught ? 'Capturado' : 'Capturar'}
           </button>

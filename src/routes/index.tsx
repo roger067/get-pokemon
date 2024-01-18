@@ -1,6 +1,7 @@
 import { Router, RouterProvider } from '@tanstack/react-router';
 import { rootRoute } from './roots';
 import { indexRoute } from './home';
+import { pokemonDetailRoute } from './pokemonDetail';
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -8,7 +9,7 @@ declare module '@tanstack/react-router' {
   }
 }
 
-const routeTree = rootRoute.addChildren([indexRoute]);
+const routeTree = rootRoute.addChildren([indexRoute, pokemonDetailRoute]);
 
 const router = new Router({ routeTree });
 

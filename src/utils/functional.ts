@@ -9,3 +9,9 @@ export function getGenerationByPokemonId(pokemonId: number) {
 
   return 'None';
 }
+
+export function formatPokemonId(id: number): string {
+  const formattedNumber = id.toString().padStart(3, '0');
+
+  return `#${formattedNumber}`;
+}

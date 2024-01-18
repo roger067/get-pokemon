@@ -9,7 +9,7 @@ const PokemonFilter = () => {
 
   return (
     <div className="flex justify-between items-center mt-10 mb-8">
-      <h1 className="font-bold text-2xl">To-do</h1>
+      <h1 className="font-bold text-3xl">To-do</h1>
       <Select
         value={caughtSelectValue}
         placeholder="Filtrar Pokemon"

@@ -96,7 +96,7 @@ const PokemonForm = () => {
       <button
         type="submit"
         disabled={isPokemonLoading || !pokemonName}
-        className="bg-purple-500 rounde-xl text-white h-[42px] px-4 rounded-xl hover:bg-purple-600 focus:bg-purple-600 transition-colors font-bold disabled:bg-purple-200"
+        className="bg-indigo-500 rounde-xl text-white h-[42px] px-4 rounded-xl hover:bg-indigo-600 focus:bg-indigo-600 transition-colors font-bold disabled:bg-indigo-200"
       >
         {isPokemonLoading ? 'Carregando...' : 'Adicionar'}
       </button>

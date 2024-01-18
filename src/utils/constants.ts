@@ -175,3 +175,5 @@ export const generations: Generations = {
   809: 'VII',
   898: 'VIII',
 };
+
+export const MAX_STAT = 150;

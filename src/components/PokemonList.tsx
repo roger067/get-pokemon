@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router';
 import { PokemonCard } from '.';
 import usePokemonStore from '../store/usePokemonStore';
 
@@ -15,19 +16,26 @@ const PokemonList = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mb-8">
       {filteredPokemons.map((pokemon) => (
-        <PokemonCard
+        <Link
           key={pokemon.id}
-          name={pokemon.name}
-          imageUrl={
-            pokemon.sprites.other.dream_world.front_default ||
-            pokemon.sprites.front_default
-          }
-          types={pokemon.types}
-          caught={pokemon.caught}
-          generation={pokemon.generation}
-          onCaughtPokemon={() => caugthPokemon(pokemon.id)}
-          onDeletePokemon={() => deletePokemon(pokemon.id)}
-        />
+          to="/pokemon/$name"
+          params={{
+            name: pokemon.name,
+          }}
+        >
+          <PokemonCard
+            name={pokemon.name}
+            imageUrl={
+              pokemon.sprites.other.dream_world.front_default ||
+              pokemon.sprites.front_default
+            }
+            types={pokemon.types}
+            caught={pokemon.caught}
+            generation={pokemon.generation}
+            onCaughtPokemon={() => caugthPokemon(pokemon.id)}
+            onDeletePokemon={() => deletePokemon(pokemon.id)}
+          />
+        </Link>
       ))}
     </div>
   );
