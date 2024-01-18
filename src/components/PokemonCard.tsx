@@ -34,13 +34,15 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
             {types.map((typeObject, index) => (
               <span
                 key={`${typeObject.type.name}-${index}`}
-                className={`px-2 py-1 rounded-full ${color.bgLight} text-white font-semibold w-fit capitalize`}
+                className={`px-2 py-1 rounded-full ${color.bgLight} text-white font-semibold w-fit capitalize text-sm`}
               >
                 {typeObject.type.name}
               </span>
             ))}
           </div>
-          <span className="text-white font-semibold text-xl">{generation}</span>
+          <span className="text-white font-semibold text-xl font-mono">
+            {generation}
+          </span>
         </div>
         <div className="flex gap-3 mt-6">
           <button

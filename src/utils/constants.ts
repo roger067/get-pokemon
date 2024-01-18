@@ -1,3 +1,5 @@
+import { Generations } from '../types/pokemon';
+
 export const mappedColorTypes = {
   normal: {
     bgThinHover: 'hover:bg-gray-100',
@@ -163,4 +165,13 @@ export const mappedColorTypes = {
   },
 };
 
-export const generations = {};
+export const generations: Generations = {
+  151: 'I',
+  251: 'II',
+  386: 'III',
+  493: 'IV',
+  649: 'V',
+  721: 'VI',
+  809: 'VII',
+  898: 'VIII',
+};

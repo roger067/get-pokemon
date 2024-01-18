@@ -16,7 +16,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
   return (
     <button
       type="button"
-      className={`transition-colors inline-flex items-center px-4 py-2 border rounded-xl cursor-pointer h-[42px] focus:outline-none ${
+      className={`transition-colors inline-flex items-center px-4 py-2 border rounded-xl cursor-pointer h-[42px] ${
         checked
           ? 'bg-slate-500 text-white'
           : 'bg-white text-slate-700 border-slate-500'

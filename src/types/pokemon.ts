@@ -94,3 +94,7 @@ export type TypeName =
   | 'dragon'
   | 'steel'
   | 'fairy';
+
+export type Generations = {
+  [key: number]: string;
+};

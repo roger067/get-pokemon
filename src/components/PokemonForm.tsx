@@ -8,6 +8,7 @@ import {
 } from '../services/queries/pokemon.query';
 import { AutoComplete, ToggleButton } from './shared';
 import usePokemonStore from '../store/usePokemonStore';
+import { getGenerationByPokemonId } from '../utils/functional';
 
 const PokemonForm = () => {
   const pokemons = usePokemonStore((state) => state.pokemons);
@@ -37,7 +38,11 @@ const PokemonForm = () => {
     refetch({ throwOnError: true })
       .then((res) => {
         if (res.data && !isPokemonLoading) {
-          addPokemon({ ...res.data, generation: 'IV', caught: caughtPokemon });
+          addPokemon({
+            ...res.data,
+            generation: getGenerationByPokemonId(res.data.id),
+            caught: caughtPokemon,
+          });
           setPokemonName('');
         }
       })
@@ -68,7 +73,7 @@ const PokemonForm = () => {
     >
       <div className="flex flex-1 gap-4 items-end">
         <div className="flex flex-col gap-2 w-full max-w-screen-sm">
-          <label htmlFor="name">Digite o nome do pokemon: </label>
+          <label htmlFor="name">Digite o nome do pokemon:</label>
           <AutoComplete
             name="name"
             value={pokemonName}
@@ -90,7 +95,7 @@ const PokemonForm = () => {
       <button
         type="submit"
         disabled={isPokemonLoading || !pokemonName}
-        className="bg-red-500 rounde-xl text-white h-[42px] px-4 rounded-xl hover:bg-red-600 focus:bg-red-600 transition-colors"
+        className="bg-red-500 rounde-xl text-white h-[42px] px-4 rounded-xl hover:bg-red-600 focus:bg-red-600 transition-colors font-bold"
       >
         {isPokemonLoading ? 'Carregando...' : 'Adicionar'}
       </button>
