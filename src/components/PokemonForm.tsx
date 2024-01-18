@@ -44,6 +44,7 @@ const PokemonForm = () => {
             caught: caughtPokemon,
           });
           setPokemonName('');
+          setcaughtPokemon(false);
         }
       })
       .catch(() => {
@@ -95,7 +96,7 @@ const PokemonForm = () => {
       <button
         type="submit"
         disabled={isPokemonLoading || !pokemonName}
-        className="bg-red-500 rounde-xl text-white h-[42px] px-4 rounded-xl hover:bg-red-600 focus:bg-red-600 transition-colors font-bold"
+        className="bg-purple-500 rounde-xl text-white h-[42px] px-4 rounded-xl hover:bg-purple-600 focus:bg-purple-600 transition-colors font-bold disabled:bg-purple-200"
       >
         {isPokemonLoading ? 'Carregando...' : 'Adicionar'}
       </button>

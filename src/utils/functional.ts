@@ -7,5 +7,5 @@ export function getGenerationByPokemonId(pokemonId: number) {
     }
   }
 
-  return 'Desconhecida';
+  return 'None';
 }

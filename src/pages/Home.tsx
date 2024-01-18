@@ -1,8 +1,9 @@
-import { PokemonForm, PokemonList } from '../components';
+import { PokemonFilter, PokemonForm, PokemonList } from '../components';
 
 const Home = () => {
   return (
     <>
+      <PokemonFilter />
       <PokemonForm />
       <PokemonList />
     </>

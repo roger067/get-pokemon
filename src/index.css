@@ -9,7 +9,7 @@
 
   html,
   body {
-    @apply m-0 min-h-dvh font-montserrat;
+    @apply m-0 min-h-dvh font-montserrat text-gray-800;
   }
 
   #root {

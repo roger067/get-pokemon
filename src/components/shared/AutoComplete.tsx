@@ -24,7 +24,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
 }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLDivElement | null>(null);
 
   const debounceCompleteMethod = useMemo(
     () => debounce(completeMethod, 500),
@@ -61,10 +61,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
   };
 
   return (
-    <div
-      className={`relative ${className}`}
-      ref={(node: HTMLInputElement) => (inputRef.current = node)}
-    >
+    <div className={`relative ${className}`} ref={inputRef}>
       <input
         type="text"
         id={name}

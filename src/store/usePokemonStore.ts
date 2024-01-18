@@ -4,6 +4,8 @@ import { AddedPokemon } from '../types/pokemon';
 type PokemonStore = {
   pokemons: AddedPokemon[];
   pokemonName: string;
+  caughtSelectValue: string;
+  setCaughtSelectValue: (value: string) => void;
   setPokemonName: (name: string) => void;
   addPokemon: (pokemon: AddedPokemon) => void;
   caugthPokemon: (id: number) => void;
@@ -13,7 +15,10 @@ type PokemonStore = {
 const usePokemonStore = create<PokemonStore>((set) => ({
   pokemons: [],
   pokemonName: '',
+  caughtSelectValue: '',
   setPokemonName: (name: string) => set(() => ({ pokemonName: name })),
+  setCaughtSelectValue: (value: string) =>
+    set(() => ({ caughtSelectValue: value })),
   addPokemon: (pokemon) =>
     set((state) => ({ pokemons: [...state.pokemons, pokemon] })),
   caugthPokemon: (id) =>
