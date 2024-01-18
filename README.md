@@ -1,4 +1,4 @@
-# Studio Sol SSBook
+# Get pokemon
 
 Aplicação que funciona como um to-do de Pokemons, podendo capturá-los, deletar e visualizar detalhes. A aplicação foi feita com React e Typescript e o endpoint utilizado foi a [pokeApi](https://pokeapi.co/). Para acessar o link de preview, basta clicar [aqui](https://get-pokemon-gamma.vercel.app/)
 
