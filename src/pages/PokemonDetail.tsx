@@ -1,6 +1,10 @@
 import { Link, useParams } from '@tanstack/react-router';
 import { usePokemonByNameQuery } from '../services/queries/pokemon.query';
-import { PokemonDetailCard, PokemonDetailHeader } from '../components';
+import {
+  PokemonCardSkeleton,
+  PokemonDetailCard,
+  PokemonDetailHeader,
+} from '../components';
 
 const PokemonDetail = () => {
   const { name } = useParams({ strict: false });
@@ -22,7 +26,11 @@ const PokemonDetail = () => {
   return (
     <>
       <PokemonDetailHeader name={name} id={pokemon?.id || 0} />
-      {pokemon && <PokemonDetailCard pokemon={pokemon} />}
+      {pokemon && !isLoading ? (
+        <PokemonDetailCard pokemon={pokemon} />
+      ) : (
+        <PokemonCardSkeleton />
+      )}
     </>
   );
 };

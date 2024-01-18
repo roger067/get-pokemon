@@ -37,7 +37,9 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   };
 
   return (
-    <div className={`p-5 shadow-md rounded-xl ${color.bgNormal}`}>
+    <div
+      className={`p-5 shadow-md rounded-xl duration-300 ease-in-out transition-transform hover:scale-105 ${color.bgNormal}`}
+    >
       <div className="flex justify-center mb-6">
         <img className="w-3/4 h-48" src={imageUrl} alt="pokemon" />
       </div>
