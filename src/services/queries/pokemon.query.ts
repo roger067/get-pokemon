@@ -10,6 +10,6 @@ export const usePokemonsQuery = () =>
 export const usePokemonByNameQuery = (pokemonName: string, enabled = true) =>
   useQuery({
     queryKey: ['getPokemonByName', pokemonName],
-    queryFn: () => getPokemonByName(pokemonName),
+    queryFn: () => getPokemonByName(pokemonName.toLowerCase()),
     enabled,
   });

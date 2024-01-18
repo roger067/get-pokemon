@@ -162,3 +162,5 @@ export const mappedColorTypes = {
     bgDarkHover: 'hover:bg-pink-800',
   },
 };
+
+export const generations = {};

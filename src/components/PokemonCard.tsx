@@ -6,7 +6,7 @@ interface PokemonCardProps {
   imageUrl: string;
   types: PokemonType[];
   generation: string;
-  caughted: boolean;
+  caught: boolean;
   onCaughtPokemon: () => void;
   onDeletePokemon: () => void;
 }
@@ -16,7 +16,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   imageUrl,
   types,
   generation = 'IV',
-  caughted,
+  caught,
   onCaughtPokemon,
   onDeletePokemon,
 }) => {
@@ -50,11 +50,11 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
             Deletar
           </button>
           <button
-            className={`${color.bgMedium} rounde-xl text-white h-[42px] px-4 rounded-xl w-full ${color.bgDarkHover} transition-colors`}
-            disabled={caughted}
+            className={`${color.bgMedium} rounde-xl text-white h-[42px] px-4 rounded-xl w-full ${color.bgDarkHover} transition-colors disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed`}
+            disabled={caught}
             onClick={() => onCaughtPokemon()}
           >
-            {caughted ? 'Capturado' : 'Capturar'}
+            {caught ? 'Capturado' : 'Capturar'}
           </button>
         </div>
       </div>

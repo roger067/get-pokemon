@@ -19,7 +19,7 @@ const usePokemonStore = create<PokemonStore>((set) => ({
   caugthPokemon: (id) =>
     set((state) => ({
       pokemons: state.pokemons.map((pokemon) =>
-        pokemon.id === id ? { ...pokemon, caughted: true } : pokemon
+        pokemon.id === id ? { ...pokemon, caught: true } : pokemon
       ),
     })),
   deletePokemon: (id) =>

@@ -10,39 +10,46 @@ import { AutoComplete, ToggleButton } from './shared';
 import usePokemonStore from '../store/usePokemonStore';
 
 const PokemonForm = () => {
+  const pokemons = usePokemonStore((state) => state.pokemons);
   const pokemonName = usePokemonStore((state) => state.pokemonName);
   const setPokemonName = usePokemonStore((state) => state.setPokemonName);
   const addPokemon = usePokemonStore((state) => state.addPokemon);
 
-  const [caughtedPokemon, setCaughtedPokemon] = useState(false);
+  const [caughtPokemon, setcaughtPokemon] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
 
   const { data, isLoading, isError } = usePokemonsQuery();
-  const {
-    data: pokemon,
-    isFetching: isPokemonLoading,
-    refetch,
-  } = usePokemonByNameQuery(pokemonName, false);
+  const { isFetching: isPokemonLoading, refetch } = usePokemonByNameQuery(
+    pokemonName,
+    false
+  );
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    try {
-      await refetch({ throwOnError: true });
-    } catch {
-      toast.error('Erro ao adicionar Pokemon!');
-    }
+    const pokemonIsDuplicated = pokemons.some(
+      (existingPokemon) =>
+        existingPokemon.name.toLowerCase() === pokemonName.toLocaleLowerCase()
+    );
+
+    if (pokemonIsDuplicated) return toast.info('Pokemon já existe no to-do!');
+
+    refetch({ throwOnError: true })
+      .then((res) => {
+        if (res.data && !isPokemonLoading) {
+          addPokemon({ ...res.data, generation: 'IV', caught: caughtPokemon });
+          setPokemonName('');
+        }
+      })
+      .catch(() => {
+        toast.error('Erro ao adicionar Pokemon!');
+      });
   };
 
   useEffect(() => {
     const options = data?.results.map((pokemon) => pokemon.name) || [];
     setFilteredOptions(options);
   }, [data]);
-
-  useEffect(() => {
-    if (pokemon && !isPokemonLoading)
-      addPokemon({ ...pokemon, generation: 'IV', caughted: caughtedPokemon });
-  }, [pokemon, isPokemonLoading, caughtedPokemon, addPokemon]);
 
   const searchPokemons = (value: string) => {
     const filteredPokemons = data?.results.filter((pokemon) => {
@@ -76,8 +83,8 @@ const PokemonForm = () => {
           className="min-w-[112px]"
           onLabel="Capturado"
           offLabel="Capturar"
-          checked={caughtedPokemon}
-          onChange={(e) => setCaughtedPokemon(e.value)}
+          checked={caughtPokemon}
+          onChange={(e) => setcaughtPokemon(e.value)}
         />
       </div>
       <button

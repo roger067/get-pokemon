@@ -29,7 +29,7 @@ export interface Pokemon {
 }
 
 export interface AddedPokemon extends Pokemon {
-  caughted: boolean;
+  caught: boolean;
   generation: string;
 }
 

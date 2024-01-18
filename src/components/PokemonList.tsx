@@ -14,7 +14,7 @@ const PokemonList = () => {
           name={pokemon.name}
           imageUrl={pokemon.sprites.front_default}
           types={pokemon.types}
-          caughted={pokemon.caughted}
+          caught={pokemon.caught}
           generation={pokemon.generation}
           onCaughtPokemon={() => caugthPokemon(pokemon.id)}
           onDeletePokemon={() => deletePokemon(pokemon.id)}
