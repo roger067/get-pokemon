@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import debounce from 'lodash.debounce';
 
 interface AutoCompleteProps {
   name: string;
@@ -25,6 +26,11 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  const debounceCompleteMethod = useMemo(
+    () => debounce(completeMethod, 500),
+    [completeMethod]
+  );
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -50,7 +56,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     onChange(query);
-    completeMethod(query);
+    debounceCompleteMethod(query);
     setShowSuggestions(true);
   };
 
@@ -71,7 +77,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
         className="w-full py-2 px-3 border border-slate-500 rounded-xl"
       />
       {showSuggestions && (
-        <ul className="absolute z-10 w-full py-2 mt-1 bg-white border rounded-xl shadow-md">
+        <ul className="absolute z-10 w-full py-2 mt-1 bg-white border rounded-xl shadow-md max-h-48 overflow-y-auto">
           {!suggestions.length ? (
             <li className="p-2 text-gray-500 text-center">
               Termo não encontrado
@@ -80,7 +86,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
             suggestions.map((suggestion, index) => (
               <li
                 key={`${suggestion}-${index}`}
-                className="transition-colors p-2 cursor-pointer hover:bg-red-500 hover:text-white"
+                className="transition-colors py-2 px-3 cursor-pointer hover:bg-red-500 hover:text-white"
                 onClick={() => onClick(suggestion)}
               >
                 {suggestion}

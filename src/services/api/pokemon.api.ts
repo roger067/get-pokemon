@@ -2,7 +2,7 @@ import { GetPokemonResponse, Pokemon } from '../../types/pokemon';
 
 export const getPokemons = async () => {
   const res: GetPokemonResponse = await fetch(
-    `https://pokeapi.co/api/v2/pokemon`
+    `https://pokeapi.co/api/v2/pokemon?limit=1302`
   ).then((res) => res.json());
   return res;
 };
@@ -13,18 +13,3 @@ export const getPokemonByName = async (pokemonName: string) => {
   ).then((res) => res.json());
   return res;
 };
-
-// export const getAllPokemons = async () => {
-//   const pokemons = await getPokemon();
-
-//   const pokemonDetailsPromises: Promise<Pokemon>[] = pokemons.results.map(
-//     async (pokemon) => {
-//       const pokemonResponse = await fetch(pokemon.url);
-//       return pokemonResponse.json();
-//     }
-//   );
-
-//   const pokemonDetails = await Promise.all(pokemonDetailsPromises);
-
-//   return pokemonDetails;
-// };

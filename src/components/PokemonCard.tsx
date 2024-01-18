@@ -23,9 +23,9 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   const color = mappedColorTypes[types[0].type.name];
 
   return (
-    <div className={`p-4 shadow-md rounded-xl ${color.bgNormal}`}>
-      <div className="flex justify-center">
-        <img className="w-3/4" src={imageUrl} alt="pokemon" />
+    <div className={`p-5 shadow-md rounded-xl ${color.bgNormal}`}>
+      <div className="flex justify-center mb-6">
+        <img className="w-3/4 h-48" src={imageUrl} alt="pokemon" />
       </div>
       <div className="flex flex-col">
         <span className="text-2xl text-white font-bold capitalize">{name}</span>
@@ -52,7 +52,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
             Deletar
           </button>
           <button
-            className={`${color.bgMedium} rounde-xl text-white h-[42px] px-4 rounded-xl w-full ${color.bgDarkHover} transition-colors disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed`}
+            className={`${color.bgMedium} rounde-xl text-white h-[42px] px-4 rounded-xl w-full ${color.bgDarkHover} transition-colors disabled:bg-gray-200 disabled:text-gray-400`}
             disabled={caught}
             onClick={() => onCaughtPokemon()}
           >
