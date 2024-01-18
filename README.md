@@ -1,30 +1,21 @@
-# React + TypeScript + Vite
+# Studio Sol SSBook
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação que funciona como um to-do de Pokemons, podendo capturá-los, deletar e visualizar detalhes. A aplicação foi feita com React e Typescript e o endpoint utilizado foi a [pokeApi](https://pokeapi.co/). Para acessar o link de preview, basta clicar [aqui](https://get-pokemon-gamma.vercel.app/)
 
-Currently, two official plugins are available:
+## Pacote de gerenciamento - PNPM (preferência)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A escolha se deve ao fato de ser uma tecnologia mais rápida que yarn e npm, além de evitar duplicação de módulos.
 
-## Expanding the ESLint configuration
+## Como executar
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Para rodar o projeto, primeiro você deve instalar os packages, ao executar no terminal o comando `pnpm install`, e logo em seguida `pnpm run dev`, para rodar o aplicativo no browser na porta 5173.
 
-- Configure the top-level `parserOptions` property like this:
+## Tecnologias usadas
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- React
+- Typescript
+- Tailwind
+- Zustand
+- Tanstack Query
+- Tanstack Route
+- Loadash

@@ -16,7 +16,10 @@ const PokemonDetailCard: React.FC<PokemonDetailCardProps> = ({ pokemon }) => {
       <div className="flex flex-col gap-8 md:w-1/3 w-full">
         <img
           className="w-100"
-          src={pokemon.sprites.other.dream_world.front_default}
+          src={
+            pokemon.sprites.other.dream_world.front_default ||
+            pokemon.sprites.front_default
+          }
           alt={pokemon.name}
         />
         <div className="flex flex-col gap-2">
