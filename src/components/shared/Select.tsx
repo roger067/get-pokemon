@@ -52,7 +52,10 @@ const Select: React.FC<SelectProps> = ({
         {value || placeholder}
       </button>
       {isDropdownOpen && (
-        <ul className="absolute z-10 w-full py-2 mt-1 bg-white border rounded-xl shadow-md max-h-48 overflow-y-auto">
+        <ul
+          className="absolute z-10 w-full py-2 mt-1 bg-white border rounded-xl shadow-md max-h-48 overflow-y-auto"
+          role="listbox"
+        >
           {items.map((item) => (
             <li
               className="transition-colors py-2 px-3 cursor-pointer hover:bg-red-500 hover:text-white"
